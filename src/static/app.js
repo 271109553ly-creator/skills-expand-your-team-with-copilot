@@ -519,6 +519,47 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
+    // Create share buttons
+    const shareUrl = encodeURIComponent(window.location.href);
+    const shareTitle = encodeURIComponent(`Join ${name} at Mergington High School!`);
+    const shareText = encodeURIComponent(`Check out this activity: ${name} - ${details.description}`);
+    
+    const shareButtons = `
+      <div class="share-buttons">
+        <div class="share-label">Share:</div>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=${shareUrl}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="share-button facebook tooltip"
+           aria-label="Share on Facebook">
+          📘
+          <span class="tooltip-text">Share on Facebook</span>
+        </a>
+        <a href="https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="share-button twitter tooltip"
+           aria-label="Share on Twitter">
+          🐦
+          <span class="tooltip-text">Share on Twitter</span>
+        </a>
+        <a href="https://wa.me/?text=${shareText}%20${shareUrl}" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="share-button whatsapp tooltip"
+           aria-label="Share on WhatsApp">
+          💬
+          <span class="tooltip-text">Share on WhatsApp</span>
+        </a>
+        <a href="mailto:?subject=${shareTitle}&body=${shareText}%20${shareUrl}" 
+           class="share-button email tooltip"
+           aria-label="Share via Email">
+          ✉️
+          <span class="tooltip-text">Share via Email</span>
+        </a>
+      </div>
+    `;
+
     activityCard.innerHTML = `
       ${tagHtml}
       <h4>${name}</h4>
@@ -528,6 +569,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <span class="tooltip-text">Regular meetings at this time throughout the semester</span>
       </p>
       ${capacityIndicator}
+      ${shareButtons}
       <div class="participants-list">
         <h5>Current Participants:</h5>
         <ul>
